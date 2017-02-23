@@ -18,7 +18,7 @@ import javax.faces.bean.ManagedBean;
  *
  * @author vitor
  */
-@ManagedBean(name="Login")
+@ManagedBean(name="LoginMB")
 @ViewScoped
 public class LoginManagedBean {
 
