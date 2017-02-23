@@ -5,20 +5,37 @@
  */
 package com.grupotcc.sgv.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
 /**
  *
  * @author Kanec
  */
+@Entity
 public class Paciente {
 
+    @Id
+    @Column(name="id" , nullable=false, unique=true)
     private int id;
+    @Column(name="nome", nullable=false, unique=true)
     private String nome;
+    @Column(name="sobrenome", nullable=false, unique=true)
     private String sobrenome;
+    @Column(name="email", nullable=false, unique=true)
     private String email;
+    @Column(name="senha", nullable=false, unique=false)
     private String senha;
+    @Column(name="rg", nullable=false, unique=true)
     private int rg;
+    @Column(name="cpf", nullable=false, unique=true)
     private int cpf;
+    @Column(name="endereco", nullable=false, unique=true)
     private String endereco;
+    @Column(name="ativo", nullable=false, unique=false)
     private boolean ativo;
 
     public Paciente(String nome, String sobrenome, String email,
