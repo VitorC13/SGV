@@ -87,10 +87,10 @@ public class Paciente {
         this.email = email;
     }
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public String getSenha() {
+        return senha;
     }
-
+    
     public int getRg() {
         return rg;
     }
