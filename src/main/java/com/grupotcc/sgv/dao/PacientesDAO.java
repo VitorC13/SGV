@@ -13,6 +13,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.grupotcc.sgv.model.Paciente;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 
 /**
  *
@@ -22,8 +26,27 @@ public class PacientesDAO {
 
     private Connection conexao;
 
+    private EntityManagerFactory factory = Persistence
+            .createEntityManagerFactory("paciente");
+    private EntityManager em = factory.createEntityManager();
+
     public PacientesDAO() throws SQLException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
+    }
+
+    public Paciente getPaciente(String nome, String senha) {
+
+        try {
+            Paciente paciente = (Paciente) em
+                    .createQuery(
+                            "SELECT u from Paciente u where u.nome = :name and u.senha = :senha")
+                    .setParameter("name", nome)
+                    .setParameter("senha", senha).getSingleResult();
+
+            return paciente;
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 
     public void cadastrarNovoPaciente(Paciente p) throws SQLException {
