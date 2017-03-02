@@ -16,13 +16,14 @@ public class Paciente {
     private String sobrenome;
     private String email;
     private String senha;
-    private int rg;
-    private int cpf;
+    private String rg;
+    private String cpf;
     private String endereco;
     private boolean ativo;
+    private PerfilAcesso perfil;
 
     public Paciente(String nome, String sobrenome, String email,
-            String senha, int rg, int cpf, String endereco, boolean ativo) {
+            String senha, String rg, String cpf, String endereco, boolean ativo) {
 
         this.nome = nome;
         this.sobrenome = sobrenome;
@@ -74,19 +75,23 @@ public class Paciente {
         return senha;
     }
 
-    public int getRg() {
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getRg() {
         return rg;
     }
 
-    public void setRg(int rg) {
+    public void setRg(String rg) {
         this.rg = rg;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -104,6 +109,14 @@ public class Paciente {
 
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
+    }
+
+    public PerfilAcesso getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilAcesso perfil) {
+        this.perfil = perfil;
     }
 
 }
