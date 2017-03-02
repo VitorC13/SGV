@@ -13,39 +13,40 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import com.grupotcc.sgv.model.Paciente;
+import com.grupotcc.sgv.model.PerfilAcesso;
 
 /**
  *
  * @author Kanec
  */
 public class PacientesDAO {
-
+    
     private Connection conexao;
-
+    
     public PacientesDAO() throws SQLException {
         this.conexao = ConectaBancoDeDados.getConexaoMySQL();
     }
-
+    
     public void cadastrarNovoPaciente(Paciente p) throws SQLException {
-        String sql = "Insert Into paciente (nome,sobrenome,email,senha,rg,cpf,endereco,ativo)"
-                + "Values(?,?,?,?,?,?,?,true)";
-
+        String sql = "Insert Into paciente (nome,sobrenome,email,senha,rg,cpf,endereco,ativo,perfil)"
+                + "Values(?,?,?,?,?,?,?,true,COMUM)";
+        
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getSobrenome());
             stmt.setString(3, p.getEmail());
             stmt.setInt(4, 12345);
-            stmt.setInt(5, p.getRg());
-            stmt.setInt(6, p.getCpf());
+            stmt.setString(5, p.getRg());
+            stmt.setString(6, p.getCpf());
             stmt.setString(7, p.getEndereco());
             //executa o código
             stmt.execute();
             stmt.close();
         }
-
+        
     }
-
+    
     public void atualizarPaciente(Paciente p) throws SQLException {
         String sql = "Update paciente set nome = ? , sobrenome = ?, email = ?, rg=?, cpf=?, endereco = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -53,8 +54,8 @@ public class PacientesDAO {
             stmt.setString(1, p.getNome());
             stmt.setString(2, p.getSobrenome());
             stmt.setString(3, p.getEmail());
-            stmt.setInt(4, p.getRg());
-            stmt.setInt(5, p.getCpf());
+            stmt.setString(4, p.getRg());
+            stmt.setString(5, p.getCpf());
             stmt.setString(6, p.getEndereco());
             stmt.setInt(7, p.getId());
             // executa o código sql
@@ -62,12 +63,12 @@ public class PacientesDAO {
             stmt.close();
         }
     }
-
+    
     public void buscarPaciente(Paciente p) throws SQLException {
-
+        
         String query = "SELECT * FROM paciente where id=" + p.getId();
         try {
-
+            
             Statement st = conexao.createStatement();
 
             // execute the query, and get a java resultset
@@ -91,16 +92,16 @@ public class PacientesDAO {
             e.printStackTrace();
         }
     }
-
+    
     public void excluirPaciente(Paciente p) throws SQLException { // implementação do método -remove-
         String sql = "update paciente set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, p.getId());
         stmt.execute();
         stmt.close();
-
+        
     }
-
+    
     public void resetarSenha(Paciente p) throws SQLException {
         String sql = "Update paciente set senha = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
@@ -112,7 +113,7 @@ public class PacientesDAO {
             stmt.close();
         }
     }
-
+    
     public int selectID(Paciente p) throws SQLException {
         String query = "SELECT id FROM paciente where id=" + p.getId();
         Statement st = conexao.createStatement();
@@ -125,7 +126,7 @@ public class PacientesDAO {
         st.close();
         return id;
     }
-
+    
     public boolean setAtivo(Paciente p) throws SQLException {
         String query = "SELECT ativo FROM paciente where id=" + p.getId();
         Statement st = conexao.createStatement();
@@ -137,5 +138,45 @@ public class PacientesDAO {
         }
         st.close();
         return ativo;
+    }
+    
+    public Paciente autenticaPaciente(Paciente p) throws SQLException {
+        Paciente pacienteAutenticado = null;
+        
+        String sql = "SELECT * FROM paciente WHERE nome=? AND senha=?";
+        ResultSet rsPaciente = null;
+        
+        try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
+            //seta os valores
+            stmt.setString(1, p.getNome());
+            stmt.setString(2, p.getSenha());
+            //executa o código
+            rsPaciente = stmt.executeQuery();
+            
+            if (rsPaciente.next()) {
+                pacienteAutenticado = new Paciente();
+                pacienteAutenticado.setId(rsPaciente.getInt("id"));
+                pacienteAutenticado.setNome(rsPaciente.getString("nome"));
+                pacienteAutenticado.setSobrenome(rsPaciente.getString("sobrenome"));
+                pacienteAutenticado.setEmail(rsPaciente.getString("email"));
+                pacienteAutenticado.setSenha(rsPaciente.getString("senha"));
+                pacienteAutenticado.setRg(rsPaciente.getString("rg"));
+                pacienteAutenticado.setCpf(rsPaciente.getString("cpf"));
+                pacienteAutenticado.setEndereco(rsPaciente.getString("endereco"));
+                pacienteAutenticado.setAtivo(rsPaciente.getBoolean("ativo"));
+                pacienteAutenticado.setPerfil(PerfilAcesso.valueOf(rsPaciente.getString("perfil")));
+            }
+        }catch(SQLException sqlErro){
+            throw new RuntimeException(sqlErro);
+        }finally{
+            if(conexao != null){
+                try{
+                    conexao.close();
+                }catch(SQLException ex){
+                    throw new RuntimeException(ex);
+                }
+            }
+        }
+        return pacienteAutenticado;
     }
 }

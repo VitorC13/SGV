@@ -27,7 +27,7 @@ public class PacientesController {
     public boolean inserirPaciente(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != 0 && p.getCpf() != 0
+        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != null && p.getCpf() != null
                 && p.getEndereco() != null && p.getEmail() != null) {
             p.setNome(p.getNome());
             p.setSobrenome(p.getSobrenome());
@@ -47,7 +47,7 @@ public class PacientesController {
     public boolean atualizarPaciente(Paciente p) throws SQLException {
 
         final JPanel panel = new JPanel();
-        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != 0 && p.getCpf() != 0
+        if (p.getNome() != null && p.getSobrenome() != null && p.getRg() != null && p.getCpf() != null
                 && p.getEndereco() != null && p.getEmail() != null && p.getId() == dao.selectID(p) && p.isAtivo() != dao.setAtivo(p)) {
             p.getId();
             p.setNome(p.getNome());
