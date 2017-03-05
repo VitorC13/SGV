@@ -1,5 +1,6 @@
 /home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/controller/AgendamentoController.java
 /home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/conexaoBanco/ConectaBancoDeDados.java
+/home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/controller/ControleAcesso.java
 /home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/model/Agendamento.java
 /home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/dao/VacinasDAO.java
 /home/vitor/NetBeansProjects/SGV/src/main/java/com/grupotcc/sgv/controller/PacientesController.java

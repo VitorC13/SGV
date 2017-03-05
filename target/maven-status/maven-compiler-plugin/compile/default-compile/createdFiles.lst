@@ -1,6 +1,7 @@
 com/grupotcc/sgv/model/Principal.class
 com/grupotcc/sgv/dao/VacinasDAO.class
 com/grupotcc/sgv/conexaoBanco/ConectaBancoDeDados.class
+com/grupotcc/sgv/controller/ControleAcesso.class
 com/grupotcc/sgv/model/Vacinas.class
 com/grupotcc/sgv/controller/VacinasController.class
 com/grupotcc/sgv/controller/PacientesController.class

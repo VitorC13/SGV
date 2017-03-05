@@ -20,7 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author vitor
  */
-public class AcessoController extends HttpServlet {
+public class ControleAcesso extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
