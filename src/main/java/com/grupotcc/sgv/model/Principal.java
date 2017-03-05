@@ -37,8 +37,8 @@ public class Principal {
         Paciente pac = new Paciente();
         pac.setNome("fghbfgbf");
         pac.setSobrenome("ututeqeqweyut");
-        pac.setRg(5353432);
-        pac.setCpf(5346778);
+        //pac.setRg(5353432);
+        //pac.setCpf(5346778);
         pac.setEmail("%%$$$$$");
         pac.setEndereco("fsfghhn");
         //pac.setId(3);
