@@ -22,8 +22,8 @@
         <location>/Login.xhtml</location>
     </error-page>
     <servlet-mapping>
-        <servlet-name>ControleUsuario</servlet-name>
-        <url-pattern>/ControleUsuario</url-pattern>
+        <servlet-name>PacientesController</servlet-name>
+        <url-pattern>/PacientesController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
