@@ -10,6 +10,10 @@
         <servlet-name>ControlePaciente</servlet-name>
         <servlet-class>com.grupotcc.sgv.controller.ControlePaciente</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UsuarioController</servlet-name>
+        <servlet-class>com.grupotcc.sgv.controller.UsuarioController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
@@ -24,6 +28,10 @@
     <servlet-mapping>
         <servlet-name>ControleAcesso</servlet-name>
         <url-pattern>/ControleAcesso</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UsuarioController</servlet-name>
+        <url-pattern>/UsuarioController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
