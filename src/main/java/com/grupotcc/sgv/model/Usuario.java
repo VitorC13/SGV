@@ -17,6 +17,7 @@ public class Usuario {
     private String login;
     private String email;
     private String senha;
+    private Cargo cargo;
     private String rg;
     private String cpf;
     private String endereco;
@@ -86,6 +87,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public Cargo getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(Cargo cargo) {
+        this.cargo = cargo;
     }
 
     public String getRg() {
