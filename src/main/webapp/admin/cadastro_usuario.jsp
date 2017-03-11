@@ -21,7 +21,7 @@
         %>
         <font color="blue"><%=msg %></font>
         <%}%>
-        <form action="ControleUsuario" method="POST">
+        <form action="UsuarioController" method="POST">
             Login: <input type="text" name="txtLogin"></br>
             Senha: <input type="password" name="txtSenha"></br>
             Perfil: <select name="optPerfil">

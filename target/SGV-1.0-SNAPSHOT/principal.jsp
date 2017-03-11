@@ -21,6 +21,6 @@
         <h1>Bem Vindo, <%= paciente.getNome() %> !</h1>
         <%}%>
         <a href="admin/cadastro_usuario.jsp">Area Restrita</a><br/>
-        <a href="AcessoController?acao=Sair">Logout</a>
+        <a href="ControleAcesso?acao=Sair">Logout</a>
     </body>
 </html>
