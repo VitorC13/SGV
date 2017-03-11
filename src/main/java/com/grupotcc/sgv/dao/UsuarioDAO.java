@@ -70,7 +70,7 @@ public class UsuarioDAO {
     
     public void buscarUsuario(Usuario u) throws SQLException {
         
-        String query = "SELECT * FROM paciente where id=" + u.getId();
+        String query = "SELECT * FROM usuario where id=" + u.getId();
         try {
             
             Statement st = conexao.createStatement();
@@ -98,7 +98,7 @@ public class UsuarioDAO {
     }
     
     public void excluirUsuario(Usuario u) throws SQLException { // implementação do método -remove-
-        String sql = "update paciente set ativo=false where id=?";
+        String sql = "update usuario set ativo=false where id=?";
         PreparedStatement stmt = conexao.prepareStatement(sql);
         stmt.setLong(1, u.getId());
         stmt.execute();
@@ -107,7 +107,7 @@ public class UsuarioDAO {
     }
     
     public void resetarSenha(Usuario u) throws SQLException {
-        String sql = "Update paciente set senha = ? where id=?";
+        String sql = "Update usuario set senha = ? where id=?";
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
             //seta os valores
             stmt.setInt(1, 123);
@@ -119,7 +119,7 @@ public class UsuarioDAO {
     }
     
     public int selectID(Usuario u) throws SQLException {
-        String query = "SELECT id FROM paciente where id=" + u.getId();
+        String query = "SELECT id FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
         int id = 0;
         // execute the query, and get a java resultset
@@ -132,7 +132,7 @@ public class UsuarioDAO {
     }
     
     public boolean setAtivo(Usuario u) throws SQLException {
-        String query = "SELECT ativo FROM paciente where id=" + u.getId();
+        String query = "SELECT ativo FROM usuario where id=" + u.getId();
         Statement st = conexao.createStatement();
         boolean ativo = true;
         // execute the query, and get a java resultset
@@ -147,7 +147,7 @@ public class UsuarioDAO {
     public Usuario autenticaUsuario(Usuario u) throws SQLException {
         Usuario usuarioAutenticado = null;
         
-        String sql = "SELECT * FROM paciente WHERE nome=? AND senha=?";
+        String sql = "SELECT * FROM usuario WHERE nome=? AND senha=?";
         ResultSet rsPaciente = null;
         
         try (PreparedStatement stmt = conexao.prepareStatement(sql)) {
